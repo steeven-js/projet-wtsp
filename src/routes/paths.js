@@ -3,7 +3,7 @@
 export const paths = {
   // Marketing
   marketing: {
-    root: '/marketing',
+    root: '/',
     services: '/marketing/services',
     caseStudies: '/marketing/case-studies',
     caseStudy: `/marketing/case-study`,

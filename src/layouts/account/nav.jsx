@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import { getAuth, signOut } from "firebase/auth";
 
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -20,6 +22,7 @@ import { _mock } from 'src/_mock';
 
 import Iconify from 'src/components/iconify';
 import TextMaxLine from 'src/components/text-max-line';
+
 
 // ----------------------------------------------------------------------
 
@@ -55,6 +58,17 @@ const navigations = [
 
 export default function Nav({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      console.log('Sign-out successful.')
+      navigate("/");
+    }).catch((error) => {
+      console.log('An error happened.')
+    });
+  }
 
   const renderContent = (
     <Stack
@@ -117,10 +131,11 @@ export default function Nav({ open, onClose }) {
             <Iconify icon="carbon:logout" />
           </ListItemIcon>
           <ListItemText
-            primary="Logout"
+            primary="Déconnexion"
             primaryTypographyProps={{
               typography: 'body2',
             }}
+            onClick={handleLogout}
           />
         </ListItemButton>
       </Stack>

@@ -13,7 +13,6 @@ import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 
 import { paths } from 'src/routes/paths';
-import { usePathname } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
 
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
@@ -37,8 +36,6 @@ import SettingsButton from '../common/settings-button';
 
 export default function Header({ headerOnDark }) {
   const theme = useTheme();
-  const pathname = usePathname();
-  const isHome = pathname === '/';
   const offset = useOffSetTop();
   const mdUp = useResponsive('up', 'md');
   const [user, setUser] = useState('')
@@ -137,7 +134,7 @@ export default function Header({ headerOnDark }) {
 
           <IconButton
             component={RouterLink}
-            href={user ? '/plantmed/account/personal' : '/auth/login-background'}
+            href={user ? 'e-commerce/account/personal' : '/auth/login-background'}
             size="small"
             color="inherit"
             sx={{ p: 0 }}
